@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jogo da Velha</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/estilo.css" class="css">
+
+        <!--Font Pacifico-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <header class="container-fluid">
+            <div class="row p-5 title">
+                <p>Jogo da Velha</p>
+            </div>
+        </header>
+
+        <div class="container-fluid">
+            <div class="row">  
+                <div class="col-4 text-center">
+                    <div class="container">
+                        <div class="row"><button id="bX">X</button></div>
+                        <div class="row"><button id="bO">O</button></div>
+
+                        <div class="row mt-5">
+                            <div class="col-12 text-center">
+                                <input type="button" value="INICIAR" id='re-iniciar'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 bg-branco jogo">
+                    <div class="container tabuleiro">
+                        <div class="row" id="linhaA">
+                            <div class="col-4 p-1" id="A1">
+                                <div class="row linha">
+                                    <div id="A1-a1" class="col-md bloco"></div>
+                                    <div id="A1-a2" class="col-md bloco border-x"></div>
+                                    <div id="A1-a3" class="col-md bloco"></div>
+                                </div>
+                                <div class="row linha border-y">
+                                    <div id="A1-b1" class="col-md bloco"></div>
+                                    <div id="A1-b2" class="col-md bloco border-x"></div>
+                                    <div id="A1-b3" class="col-md bloco"></div>
+                                </div>
+                                <div class="row linha">
+                                    <div id="A1-c1" class="col-md bloco"></div>
+                                    <div id="A1-c2" class="col-md bloco border-x"></div>
+                                    <div id="A1-c3" class="col-md bloco"></div>
+                                </div>
+                            </div>
+            
+                            <div class="col-4 p-1 border-X" id="A2">
+                                <div class="row linha">
+                                    <div id="A2-a1" class="col-md bloco"></div>
+                                    <div id="A2-a2" class="col-md bloco border-x"></div>
+                                    <div id="A2-a3" class="col-md bloco"></div>
+                                </div>
+                                <div class="row linha border-y">
+                                    <div id="A2-b1" class="col-md bloco"></div>
+                                    <div id="A2-b2" class="col-md bloco border-x"></div>
+                                    <div id="A2-b3" class="col-md bloco"></div>
+                                </div>
+                                <div class="row linha">
+                                    <div id="A2-c1" class="col-md bloco"></div>
+                                    <div id="A2-c2" class="col-md bloco border-x"></div>
+                                    <div id="A2-c3" class="col-md bloco"></div>
+                                </div>
+                            </div>
+            
+                            <div class="col-4 p-1" id="A3">
+                                <div class="row linha">
+                                    <div id="A3-a1" class="col-4 bloco"></div>
+                                    <div id="A3-a2" class="col-4 bloco border-x"></div>
+                                    <div id="A3-a3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha border-y">
+                                    <div id="A3-b1" class="col-4 bloco"></div>
+                                    <div id="A3-b2" class="col-4 bloco border-x"></div>
+                                    <div id="A3-b3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha">
+                                    <div id="A3-c1" class="col-4 bloco"></div>
+                                    <div id="A3-c2" class="col-4 bloco border-x"></div>
+                                    <div id="A3-c3" class="col-4 bloco"></div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="row border-Y" id="linhaB">
+                            <div class="col-4 p-1" id="B1">
+                                <div class="row linha">
+                                    <div id="B1-a1" class="col-4 bloco"></div>
+                                    <div id="B1-a2" class="col-4 bloco border-x"></div>
+                                    <div id="B1-a3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha border-y">
+                                    <div id="B1-b1" class="col-4 bloco"></div>
+                                    <div id="B1-b2" class="col-4 bloco border-x"></div>
+                                    <div id="B1-b3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha">
+                                    <div id="B1-c1" class="col-4 bloco"></div>
+                                    <div id="B1-c2" class="col-4 bloco border-x"></div>
+                                    <div id="B1-c3" class="col-4 bloco"></div>
+                                </div>
+                            </div>
+            
+                            <div class="col-4 p-1 border-X" id="B2">
+                                <div class="row linha">
+                                    <div id="B2-a1" class="col-4 bloco"></div>
+                                    <div id="B2-a2" class="col-4 bloco border-x"></div>
+                                    <div id="B2-a3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha border-y">
+                                    <div id="B2-b1" class="col-4 bloco"></div>
+                                    <div id="B2-b2" class="col-4 bloco border-x"></div>
+                                    <div id="B2-b3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha">
+                                    <div id="B2-c1" class="col-4 bloco"></div>
+                                    <div id="B2-c2" class="col-4 bloco border-x"></div>
+                                    <div id="B2-c3" class="col-4 bloco"></div>
+                                </div>
+                            </div>
+            
+                            <div class="col-4 p-1" id="B3">
+                                <div class="row linha">
+                                    <div id="B3-a1" class="col-4 bloco"></div>
+                                    <div id="B3-a2" class="col-4 bloco border-x"></div>
+                                    <div id="B3-a3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha border-y">
+                                    <div id="B3-b1" class="col-4 bloco"></div>
+                                    <div id="B3-b2" class="col-4 bloco border-x"></div>
+                                    <div id="B3-b3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha">
+                                    <div id="B3-c1" class="col-4 bloco"></div>
+                                    <div id="B3-c2" class="col-4 bloco border-x"></div>
+                                    <div id="B3-c3" class="col-4 bloco"></div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="row" id="linhaC">
+                            <div class="col-4 p-1" id="C1">
+                                <div class="row linha">
+                                    <div id="C1-a1" class="col-4 bloco"></div>
+                                    <div id="C1-a2" class="col-4 bloco border-x"></div>
+                                    <div id="C1-a3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha border-y">
+                                    <div id="C1-b1" class="col-4 bloco"></div>
+                                    <div id="C1-b2" class="col-4 bloco border-x"></div>
+                                    <div id="C1-b3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha">
+                                    <div id="C1-c1" class="col-4 bloco"></div>
+                                    <div id="C1-c2" class="col-4 bloco border-x"></div>
+                                    <div id="C1-c3" class="col-4 bloco"></div>
+                                </div>
+                            </div>
+            
+                            <div class="col-4 p-1 border-X" id="C2">
+                                <div class="row linha">
+                                    <div id="C2-a1" class="col-4 bloco"></div>
+                                    <div id="C2-a2" class="col-4 bloco border-x"></div>
+                                    <div id="C2-a3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha border-y">
+                                    <div id="C2-b1" class="col-4 bloco"></div>
+                                    <div id="C2-b2" class="col-4 bloco border-x"></div>
+                                    <div id="C2-b3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha">
+                                    <div id="C2-c1" class="col-4 bloco"></div>
+                                    <div id="C2-c2" class="col-4 bloco border-x"></div>
+                                    <div id="C2-c3" class="col-4 bloco"></div>
+                                </div>
+                            </div>
+            
+                            <div class="col-4 p-1" id="C3">
+                                <div class="row linha">
+                                    <div id="C3-a1" class="col-4 bloco"></div>
+                                    <div id="C3-a2" class="col-4 bloco border-x"></div>
+                                    <div id="C3-a3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha border-y">
+                                    <div id="C3-b1" class="col-4 bloco"></div>
+                                    <div id="C3-b2" class="col-4 bloco border-x"></div>
+                                    <div id="C3-b3" class="col-4 bloco"></div>
+                                </div>
+                                <div class="row linha">
+                                    <div id="C3-c1" class="col-4 bloco"></div>
+                                    <div id="C3-c2" class="col-4 bloco border-x"></div>
+                                    <div id="C3-c3" class="col-4 bloco"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+        <script src="./jquery/jquery.js"></script>
+        <script src="./js/script.js"></script>
+    </body>
+</html>
