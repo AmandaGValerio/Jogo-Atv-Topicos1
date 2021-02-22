@@ -9,6 +9,9 @@ let jogos = [];
 
 window.addEventListener("load", () => {
     getDivsJogo();
+    $("#re-iniciar").click(() => {
+        window.location.reload();
+    });
 });
 
 const getDivsJogo = () => {
@@ -39,6 +42,13 @@ const getDivsJogo = () => {
 
 const switchPlayer = () => {
     jogador = rodada%2;
+    if(jogador === 0){
+        $("#bX").addClass("marcar-vez");
+        $("#bO").removeClass("marcar-vez");
+    }else{
+        $("#bO").addClass("marcar-vez");
+        $("#bX").removeClass("marcar-vez");
+    }
 }
 
 const processMove = () => {
