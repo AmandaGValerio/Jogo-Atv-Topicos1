@@ -115,6 +115,7 @@ main {
 .bg-blue-dark {background: #2c2c54}
 .bg-branco{background: #ecf0f1}
 .bg-pink{background: #e84393}
+.bg-div-winner{background: none; z-index: 1;}
 
 /* Classes aux */
 .marcar-vez { 
@@ -130,9 +131,32 @@ color: #e84393;
     color: rgb(10, 63, 141);
 }
 
+.img-size {
+    width: 90% !important;
+}
+
 .jogo {
 border-radius: 26px;
 -webkit-box-shadow: 0px 6px 8px -4px rgba(0,0,0,0.37);
 -moz-box-shadow: 0px 6px 8px -4px rgba(0,0,0,0.37);
 box-shadow: 0px 6px 8px -4px rgba(0,0,0,0.37);
+}
+
+/* Função de Animação */
+@keyframes giro {
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+.animate {
+    animation: 1s giro;
+}
+
+/* Media Query */
+
+@media only screen and (max-width: 1165px) {
+    .row {
+        flex-wrap: unset;
+    }
 }
