@@ -53,8 +53,10 @@ const switchPlayer = () => {
 }
 
 function verificar() {
-    //pega a posição onde acabou 
-    var pos1, pos2;
+    //pega a posição onde o usuário marcou
+    var pos1;
+    var pos2;
+
     var mod1 = pos1 % 3;
     var mod2 = pos2 % 3;
 
@@ -62,9 +64,9 @@ function verificar() {
     switch (mod1) {
         case 0:
             //se o valor for igual na do lado, verifica a próxima lateral
-            if (matrizJogadas[pos1 + mod1][pos2] == matrizJogadas[pos1][pos2]) {
+            if (matrizJogadas[pos1 + 1][pos2] == matrizJogadas[pos1][pos2]) {
                 //se sim, completou a sequencia
-                if (matrizJogadas[pos1 + mod1 + 1][pos2] == matrizJogadas[pos1][pos2]) {
+                if (matrizJogadas[pos1 + 2][pos2] == matrizJogadas[pos1][pos2]) {
                     //marca o icone em tamanho grande
                     
                     //salva o valor na matriz binária
@@ -88,9 +90,9 @@ function verificar() {
             break;
         case 2:
             //se o valor for igual na do lado, verifica a próxima lateral
-            if (matrizJogadas[pos1 - mod1][pos2] == matrizJogadas[pos1][pos2]) {
+            if (matrizJogadas[pos1 - 1][pos2] == matrizJogadas[pos1][pos2]) {
                 //se sim, completou a sequencia
-                if (matrizJogadas[pos1 - mod1 - 1][pos2] == matrizJogadas[pos1][pos2]) {
+                if (matrizJogadas[pos1 - mod1][pos2] == matrizJogadas[pos1][pos2]) {
                     //marca o icone em tamanho grande
                     
                     //salva o valor na matriz binária
@@ -106,9 +108,9 @@ function verificar() {
     switch (mod2) {
         case 0:
             //se o valor for igual na do lado, verifica a próxima lateral
-            if (matrizJogadas[pos1][pos2 + mod2] == matrizJogadas[pos1][pos2]) {
+            if (matrizJogadas[pos1][pos2 + 1] == matrizJogadas[pos1][pos2]) {
                 //se sim, completou a sequencia
-                if (matrizJogadas[pos1][pos2 + mod2 + 1] == matrizJogadas[pos1][pos2]) {
+                if (matrizJogadas[pos1][pos2 + 2] == matrizJogadas[pos1][pos2]) {
                     //marca o icone em tamanho grande
 
                     //salva o valor na matriz binária
@@ -132,9 +134,9 @@ function verificar() {
             break;
         case 2:
             //se o valor for igual na do lado, verifica a próxima lateral
-            if (matrizJogadas[pos1][pos2 - mod2] == matrizJogadas[pos1][pos2]) {
+            if (matrizJogadas[pos1][pos2 - 1] == matrizJogadas[pos1][pos2]) {
                 //se sim, completou a sequencia
-                if (matrizJogadas[pos1][pos2 - mod2 - 1] == matrizJogadas[pos1][pos2]) {
+                if (matrizJogadas[pos1][pos2 - mod2] == matrizJogadas[pos1][pos2]) {
                     //marca o icone em tamanho grande
 
                     //salva o valor na matriz binária
