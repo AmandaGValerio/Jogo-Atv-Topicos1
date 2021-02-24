@@ -7,6 +7,7 @@ let player1 = 0;
 let player2 = 0;
 let jogos = [];
 let matriz = [];
+let matrizMaior = [];
 
 /**
  * faz a chamada da função anonima depois que o evendo
@@ -41,6 +42,7 @@ const getDivsJogo = () => {
     for(let i=0; i<3; i++){
         linha = i%3 === 0 ? "A" : i%3 === 1 ? "B" : "C";
         aux = linha;
+        matrizMaior.push([])
         /**
          * O segundo for vai fazer a concatenação do número da linha
          * preparando assim a variavel para utilização
@@ -53,6 +55,8 @@ const getDivsJogo = () => {
              * dos nove jogos possiveis no tabuleiro
              */
             for (let k = 1; k <= 9; k++) {
+                //inicializa todas as posições do vetor com -1
+               matriz.push(-1);
                 //usa dois operadores ternarios para fazer a correspondencia da letra maiuscula com a minuscula
                 let letra = k <= 3 ? "a" : k <= 6 ? "b" : "c";
                 //usa um ternário para fazer o switch entre as posições
@@ -94,18 +98,19 @@ const getDivsJogo = () => {
                      * por um caracter vazio. Depois é feita a conversão para inteiro.
                      */
                     let row = arrayLetra[0].replace(regNumb, "") === "A"
-                                ? 1 : arrayLetra[0].replace(regNumb, "") === "B"
-                                ? 2 : 3;
+                                ? 0 : arrayLetra[0].replace(regNumb, "") === "B"
+                                ? 1 : 2;
                     let col = arrayLetra[1].replace(regNumb, "") === 'a' 
-                                ? 1 : arrayLetra[1].replace(regNumb, "") === 'b' 
-                                ? 2 : 3;
-                    console.log(row)
-                    console.log(col)
+                                ? 0 : arrayLetra[1].replace(regNumb, "") === 'b' 
+                                ? 1 : 2;
+                    //insere na matriz maior na linha e coluna correspondente e na posição do vetor referente à div clicada
+                    matrizMaior[row][col][k] = jogador;
                     switchPlayer();
-                    //verificar(row, col); //testando a vitória
+                    //verificar(row, col, k); //testando a vitória
                     rodada++;
                 })
             }
+            matrizMaior[i].push(matriz);
         }
     }
 }
@@ -125,7 +130,7 @@ const switchPlayer = () => {
     }
 }
 
-function verificar(pos1, pos2) {
+function verificar(pos1, pos2, k) {
 
     var mod1 = pos1 % 3;
     var mod2 = pos2 % 3;
