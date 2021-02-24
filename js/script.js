@@ -27,7 +27,7 @@ const getDivsJogo = () => {
             for (let k = 1; k <= 9; k++) {
                 let letra = k <= 3 ? "a" : k <= 6 ? "b" : "c";
                 let position = k%3 === 0 ? 3 : k%3;
-                parametro1 = letra; //tentativa de pegar a linha
+                parametro1 = k; //tentativa de pegar a linha
                 letra = letra + position;
                 letra = linha + "-"+letra;
                 $(`#${letra}`).click(() => {
