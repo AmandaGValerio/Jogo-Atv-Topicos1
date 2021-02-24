@@ -8,34 +8,101 @@ let player2 = 0;
 let jogos = [];
 let matriz = [];
 
+/**
+ * faz a chamada da função anonima depois que o evendo
+ * 'load' for chamado pelo objeto window, ou seja,
+ * assim que a janela terminar de carregar todo o conteúdo,
+ * chama a função anonima
+ */
 window.addEventListener("load", () => {
+    //prepara o tabuleiro com a função click do jquery
     getDivsJogo();
+
+    //prepara o botão iniciar com a função click do jquery
     $("#re-iniciar").click(() => {
+        //faz o reload da janela
         window.location.reload();
     });
 });
 
+/**
+ * Função que prepara o tabuleiro.
+ * Através da função click do JQuery, adiciona o 
+ * eventListen click em todas as divs dentro dos jogos
+ * e este evendo dispara a função anonima específica para cada 
+ * div clicada
+ */
 const getDivsJogo = () => {
     let linha = "";
     let aux = "";
+    /**
+     * O for mais externo vai fazer o switch da linha do tabuleiro maior
+     */
     for(let i=0; i<3; i++){
         linha = i%3 === 0 ? "A" : i%3 === 1 ? "B" : "C";
         aux = linha;
+        /**
+         * O segundo for vai fazer a concatenação do número da linha
+         * preparando assim a variavel para utilização
+         */
         for (let j = 1; j <= 3; j++) {
             linha = aux;
             linha = linha + j;
+            /**
+             * O terceiro for vai preparar o jogo da velha dentro de cada um
+             * dos nove jogos possiveis no tabuleiro
+             */
             for (let k = 1; k <= 9; k++) {
+                //usa dois operadores ternarios para fazer a correspondencia da letra maiuscula com a minuscula
                 let letra = k <= 3 ? "a" : k <= 6 ? "b" : "c";
+                //usa um ternário para fazer o switch entre as posições
                 let position = k%3 === 0 ? 3 : k%3;
-                parametro1 = k; //tentativa de pegar a linha
+                //prepara a variável letra como identificador das divs
                 letra = letra + position;
                 letra = linha + "-"+letra;
+
+                /**
+                 * JQuery click:
+                 * vai procurar a div correspondente ao identificador da variável letra e
+                 * vai adicionar o evento click que dispara a função anônima
+                 */
                 $(`#${letra}`).click(() => {
+                    /**
+                     * Adiciona o jquery delay para aguardar 500 milisegundos e depois
+                     * adicionar a classe jogador à div. Essa cl
+                     */
                     $(`#${letra}`).delay(500).addClass(`jogador${jogador}`);
+
+                    /**
+                     * Usa um ternário para verificar o valor da variável jogador
+                     * caso seja 0 vai adicionar a função delay para aguardar 1 segundo e
+                     * depois inserir X dentro da div. Caso seja 1 fara o mesmo, mas vai
+                     * inserir O
+                     */
                     jogador === 0 ? $(`#${letra}`).delay(1000).html("X") : $(`#${letra}`).delay(1000).html("O");
-                    verifyWinner(letra); //marca o icone
-                    verificar(parametro1, position); //testando a vitória
+
+                    /**
+                     * arrayLetra receberá o resultado da função split
+                     * que vai separar a string letra em duas strings utilizando 
+                     * o delimitador '-'
+                     */
+                    const arrayLetra = letra.split('-');
+                    //cria uma expressão regular que irá procurar por números
+                    const regNumb = RegExp("[1-3]");
+                    /**
+                     * As proximas linhas farão a substituição das letras encontradas pelo regex 
+                     * por um caracter vazio. Depois é feita a conversão para inteiro.
+                     */
+                    let row = arrayLetra[0].replace(regNumb, "") === "A"
+                                ? 1 : arrayLetra[0].replace(regNumb, "") === "B"
+                                ? 2 : 3;
+                    let col = arrayLetra[1].replace(regNumb, "") === 'a' 
+                                ? 1 : arrayLetra[1].replace(regNumb, "") === 'b' 
+                                ? 2 : 3;
+                    console.log(row)
+                    console.log(col)
                     switchPlayer();
+                    //verificar(row, col); //testando a vitória
                     rodada++;
                 })
             }
@@ -43,6 +110,10 @@ const getDivsJogo = () => {
     }
 }
 
+/**
+ * Faz a mudança do jogador e 
+ * marca qual é o jogador da vez
+ */
 const switchPlayer = () => {
     jogador = rodada%2;
     if(jogador === 0){
@@ -168,6 +239,9 @@ function verificar(pos1, pos2) {
     }
 }
 
+/**
+ * Faz a inclusão do simbolo do vencedor da rodada e uma animação
+ */
 const verifyWinner = (value) => {
     const id = value.split('-')
     let img = `
