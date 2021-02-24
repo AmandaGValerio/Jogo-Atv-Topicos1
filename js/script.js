@@ -27,13 +27,14 @@ const getDivsJogo = () => {
             for (let k = 1; k <= 9; k++) {
                 let letra = k <= 3 ? "a" : k <= 6 ? "b" : "c";
                 let position = k%3 === 0 ? 3 : k%3;
+                parametro1 = letra; //tentativa de pegar a linha
                 letra = letra + position;
                 letra = linha + "-"+letra;
                 $(`#${letra}`).click(() => {
                     $(`#${letra}`).delay(500).addClass(`jogador${jogador}`);
                     jogador === 0 ? $(`#${letra}`).delay(1000).html("X") : $(`#${letra}`).delay(1000).html("O");
-                    //verificar();
                     verifyWinner(letra); //marca o icone
+                    verificar(parametro1, position); //testando a vitória
                     switchPlayer();
                     rodada++;
                 })
@@ -188,7 +189,7 @@ function verificarMaior(pos1, pos2){
             if (matrizMaior[pos1 + 1][pos2] == matrizMaior[pos1][pos2]) {
                 //se sim, completou a sequencia
                 if (matrizMaior[pos1 + 2][pos2] == matrizMaior[pos1][pos2]) {
-                    //exibe uma mensagem de vitória
+                    //exibe uma mensagem de vitória e encerra o jogo
                 }
             }
             break;
@@ -197,7 +198,7 @@ function verificarMaior(pos1, pos2){
             if (matrizMaior[pos1 + mod1][pos2] == matrizMaior[pos1][pos2]) {
                 //se sim, completou a sequencia
                 if (matrizMaior[pos1 - mod1][pos2] == matrizMaior[pos1][pos2]) {
-                    //exibe uma mensagem de vitória
+                    //exibe uma mensagem de vitória e encerra o jogo
                 }
             }
             break;
@@ -206,7 +207,7 @@ function verificarMaior(pos1, pos2){
             if (matrizMaior[pos1 - 1][pos2] == matrizMaior[pos1][pos2]) {
                 //se sim, completou a sequencia
                 if (matrizMaior[pos1 - mod1][pos2] == matrizMaior[pos1][pos2]) {
-                    //exibe uma mensagem de vitória
+                    //exibe uma mensagem de vitória e encerra o jogo
                 }
             }
             break;
@@ -218,7 +219,7 @@ function verificarMaior(pos1, pos2){
             if (matrizMaior[pos1][pos2 + 1] == matrizMaior[pos1][pos2]) {
                 //se sim, completou a sequencia
                 if (matrizMaior[pos1][pos2 + 2] == matrizMaior[pos1][pos2]) {
-                    //exibe uma mensagem de vitória
+                    //exibe uma mensagem de vitória e encerra o jogo
                 }
             }
             break;
@@ -227,7 +228,7 @@ function verificarMaior(pos1, pos2){
             if (matrizMaior[pos1][pos2 + mod2] == matrizMaior[pos1][pos2]) {
                 //se sim, completou a sequencia
                 if (matrizMaior[pos1][pos2 - mod2] == matrizMaior[pos1][pos2]) {
-                    //exibe uma mensagem de vitória
+                    //exibe uma mensagem de vitória e encerra o jogo
                 }
             }
             break;
@@ -236,7 +237,7 @@ function verificarMaior(pos1, pos2){
             if (matrizMaior[pos1][pos2 - 1] == matrizMaior[pos1][pos2]) {
                 //se sim, completou a sequencia
                 if (matrizMaior[pos1][pos2 - mod2] == matrizMaior[pos1][pos2]) {
-                    //exibe uma mensagem de vitória
+                    //exibe uma mensagem de vitória e encerra o jogo
                 }
             }
             break;
@@ -247,11 +248,11 @@ function verificarMaior(pos1, pos2){
     if(matrizMaior[centro1][centro2] == matrizMaior[pos1][pos2]){
         if(matrizMaior[centro1][centro2] == matrizMaior[centro1--][centro2--] && matrizMaior[centro1][centro2] == 
             matrizMaior[centro1++][centro2++]){
-            //exibe uma mensagem de vitória
+            //exibe uma mensagem de vitória e encerra o jogo
         }
         else if(matrizMaior[centro1][centro2] == matrizMaior[centro1--][centro2++] && matrizMaior[centro1][centro2] == 
             matrizMaior[centro1++][centro2--]){
-            //exibe uma mensagem de vitória
+            //exibe uma mensagem de vitória e encerra o jogo
         }
     }
 }
