@@ -50,6 +50,7 @@ const getDivsJogo = () => {
         for (let j = 1; j <= 3; j++) {
             linha = aux;
             linha = linha + j;
+            matrizMaior[i].push([])
             /**
              * O terceiro for vai preparar o jogo da velha dentro de cada um
              * dos nove jogos possiveis no tabuleiro
@@ -110,7 +111,7 @@ const getDivsJogo = () => {
                     rodada++;
                 })
             }
-            matrizMaior[i].push(matriz);
+            matrizMaior[i][j-1].push(matriz);
         }
     }
 }
