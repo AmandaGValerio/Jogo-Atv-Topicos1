@@ -85,21 +85,25 @@ const getDivsJogo = () => {
                      */
                     const arrayLetra = letra.split('-');
                     //cria uma expressão regular que irá procurar pelas letras maiusculas e minusculas
+                    const regNumb = RegExp("[1-3]")
                     const regUpper = RegExp("[A-Z]");
                     const regDown = RegExp("[a-z]");
                     /**
                      * As proximas linhas farão a substituição das letras encontradas pelo regex 
                      * por um caracter vazio. Depois é feita a conversão para inteiro.
                      */
-                    let row = arrayLetra[0].replace(regUpper, "L1");
-                    let col = arrayLetra[1].replace(regDown, "L2");
-                    console.log(letra)
+                    let row = arrayLetra[0].replace(regUpper, "");
+                    let col = arrayLetra[1].replace(regDown, "");
+                    
+                    //Variáveis para utilizar na função verificar
+                    const L1 = arrayLetra[0].replace(regNumb, "");
+                    const n1 = row;
+                    const L2 = arrayLetra[1].replace(regNumb, "");
+                    const n2 = col;
+
                     jogador === 0 ? $(`#${letra}`).delay(1000).html("X") : $(`#${letra}`).delay(1000).html("O");
                     //insere na matriz maior na linha e coluna correspondente e na posição do vetor referente à div clicada
-                    const r = row.replace("L1", "");
-                    const c = col.replace("L2", "");
-                    
-                    matrizMaior[r][c][0][k-1] = jogador;
+                    matrizMaior[row][col][0][k-1] = jogador;
                     //se verificar que houve ganhador...
                     var bo = verificar(row, col, k-1);
                     if (bo){
