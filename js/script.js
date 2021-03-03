@@ -84,21 +84,22 @@ const getDivsJogo = () => {
                      * o delimitador '-'
                      */
                     const arrayLetra = letra.split('-');
-                    //cria uma expressão regular que irá procurar por números
-                    const regNumb = RegExp("[1-3]");
+                    //cria uma expressão regular que irá procurar pelas letras maiusculas e minusculas
+                    const regUpper = RegExp("[A-Z]");
+                    const regDown = RegExp("[a-z]");
                     /**
                      * As proximas linhas farão a substituição das letras encontradas pelo regex 
                      * por um caracter vazio. Depois é feita a conversão para inteiro.
                      */
-                    let row = arrayLetra[0].replace(regNumb, "") === "A"
-                        ? 0 : arrayLetra[0].replace(regNumb, "") === "B"
-                            ? 1 : 2;
-                    let col = arrayLetra[1].replace(regNumb, "") === 'a'
-                        ? 0 : arrayLetra[1].replace(regNumb, "") === 'b'
-                            ? 1 : 2;
+                    let row = arrayLetra[0].replace(regUpper, "L1");
+                    let col = arrayLetra[1].replace(regDown, "L2");
+                    console.log(letra)
                     jogador === 0 ? $(`#${letra}`).delay(1000).html("X") : $(`#${letra}`).delay(1000).html("O");
                     //insere na matriz maior na linha e coluna correspondente e na posição do vetor referente à div clicada
-                    matrizMaior[row][col][0][k-1] = jogador;
+                    const r = row.replace("L1", "");
+                    const c = col.replace("L2", "");
+                    
+                    matrizMaior[r][c][0][k-1] = jogador;
                     //se verificar que houve ganhador...
                     var bo = verificar(row, col, k-1);
                     if (bo){
@@ -106,7 +107,8 @@ const getDivsJogo = () => {
                     }
                     switchPlayer();
                     //depois de processado o click remove o eventListener para click
-                    //document.getElementById(`#${letra}`).removeEventListener('click');
+                    const element = document.getElementById(`${letra}`);
+                    element.removeEventListener('click', () => {});
                     $(`#${letra}`).off('click');
                     
                     rodada++;
@@ -136,12 +138,10 @@ function verificar(pos1, pos2, k) {
 
     //vasculha na linha
     const position = ""+k
-    console.log(typeof(position))
     switch(position){
         case "0":
         case "3":
         case "6": 
-            console.log(matrizMaior[pos1][pos2][0][k])
             if(matrizMaior[pos1][pos2][0][k+1] === matrizMaior[pos1][pos2][0][k] 
                 && matrizMaior[pos1][pos2][0][k+2] === matrizMaior[pos1][pos2][0][k]){
                     const j = matrizMaior[pos1][pos2][0][k] === 'x'
