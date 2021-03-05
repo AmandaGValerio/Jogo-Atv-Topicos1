@@ -136,8 +136,8 @@ const switchPlayer = () => {
 
 function verificar(L1, n1, L2, n2) {
 
-    char1 = L1 == "A" ? 1 : L1 == "B" ? 2 : 3;
-    char2 = L2 == "a" ? 0 : L2 == "b" ? 3 : 6;
+    char1 = L1 == "A" ? 0 : L1 == "B" ? 1 : 2;
+    char2 = L2 == "a" ? 0 : L2 == "b" ? 1 : 2;
     pos2 = L2 == "a" ? 0 + n2 - 1 : L2 == "b" ? 3 + n2 - 1 : 6 + n2 - 1;
     //pos1 = (L1 == "A" ? 0 : L1 == "B" ? 1 : 2)*3 + (n1-1);
     pos1 = L1 == "A" ? 0 + n1 - 1 : L1 == "B" ? 3 + n1 - 1 : 6 + n1 - 1;
@@ -148,6 +148,8 @@ function verificar(L1, n1, L2, n2) {
         case 3:
         case 6:
             if (matrizMaior[pos1][0] === matrizMaior[pos1][3] && matrizMaior[pos1][0] === matrizMaior[pos1][6]) {
+                //salva na outra matriz de controle
+                matriz[char1][n1-1] = jogador;
                 return true;
             }
             break
@@ -155,6 +157,8 @@ function verificar(L1, n1, L2, n2) {
         case 4:
         case 7:
             if (matrizMaior[pos1][1] === matrizMaior[pos1][4] && matrizMaior[pos1][1] === matrizMaior[pos1][7]) {
+                //salva na outra matriz de controle
+                matriz[char1][n1-1] = jogador;
                 return true;
             }
             break;
@@ -162,6 +166,8 @@ function verificar(L1, n1, L2, n2) {
         case 5:
         case 8:
             if (matrizMaior[pos1][2] === matrizMaior[pos1][5] && matrizMaior[pos1][2] === matrizMaior[pos1][8]) {
+                //salva na outra matriz de controle
+                matriz[char1][n1-1] = jogador;
                 return true;
             }
             break;
@@ -174,6 +180,8 @@ function verificar(L1, n1, L2, n2) {
         case 1:
         case 2:
             if (matrizMaior[pos1][0] === matrizMaior[pos1][1] && matrizMaior[pos1][0] === matrizMaior[pos1][2]){
+                //salva na outra matriz de controle
+                matriz[char1][n1-1] = jogador;
                 return true;
             }
             break;
@@ -181,6 +189,8 @@ function verificar(L1, n1, L2, n2) {
         case 4:
         case 5:
             if (matrizMaior[pos1][3] === matrizMaior[pos1][4] && matrizMaior[pos1][3] === matrizMaior[pos1][5]) {
+                //salva na outra matriz de controle
+                matriz[char1][n1-1] = jogador;
                 return true;
             }
             break;
@@ -188,6 +198,8 @@ function verificar(L1, n1, L2, n2) {
         case 7:
         case 8:
             if (matrizMaior[pos1][6] === matrizMaior[pos1][7] && matrizMaior[pos1][6] === matrizMaior[pos1][8]) {
+                //salva na outra matriz de controle
+                matriz[char1][n1-1] = jogador;
                 return true;
             }
             break;
@@ -197,18 +209,24 @@ function verificar(L1, n1, L2, n2) {
         case 2:
         case 6:
             if (matrizMaior[pos1][2] === matrizMaior[pos1][4] && matrizMaior[pos1][6] === matrizMaior[pos1][2]) {
+                //salva na outra matriz de controle
+                matriz[char1][n1-1] = jogador;
                 return true;
             }
             break;
         case 0:
         case 8:
             if (matrizMaior[pos1][0] === matrizMaior[pos1][4] && matrizMaior[pos1][0] === matrizMaior[pos1][8]) {
+                //salva na outra matriz de controle
+                matriz[char1][n1-1] = jogador;
                 return true;
             }
             break;
         case 4:
             if (matrizMaior[pos1][4] === matrizMaior[pos1][2] && matrizMaior[pos1][4] === matrizMaior[pos1][6]
                 || matrizMaior[pos1][4] === matrizMaior[pos1][0] && matrizMaior[pos1][4] === matrizMaior[pos1][8]) {
+                //salva na outra matriz de controle
+                matriz[char1][n1-1] = jogador;
                 return true;
             }
             break;
