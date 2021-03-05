@@ -44,7 +44,6 @@ const getDivsJogo = () => {
     for (let i = 0; i < 3; i++) {
         linha = i % 3 === 0 ? "A" : i % 3 === 1 ? "B" : "C";
         aux = linha;
-        //matrizMaior.push([])
         /**
          * O segundo for vai fazer a concatenação do número da linha
          * preparando assim a variavel para utilização
@@ -52,16 +51,11 @@ const getDivsJogo = () => {
         for (let j = 1; j <= 3; j++) {
             linha = aux;
             linha = linha + j;
-            //matrizMaior[i].push([])
-            //let matriz = []
-            //matriz.push(-1);
             /**
              * O terceiro for vai preparar o jogo da velha dentro de cada um
              * dos nove jogos possiveis no tabuleiro
              */
             for (let k = 1; k <= 9; k++) {
-                //inicializa todas as posições do vetor com -1
-                //matrizMaior.push(-1);
                 //usa dois operadores ternarios para fazer a correspondencia da letra maiuscula com a minuscula
                 let letra = k <= 3 ? "a" : k <= 6 ? "b" : "c";
                 //usa um ternário para fazer o switch entre as posições
@@ -106,13 +100,11 @@ const getDivsJogo = () => {
 
                     jogador === 0 ? $(`#${letra}`).delay(1000).html("X") : $(`#${letra}`).delay(1000).html("O");
                     //insere na matriz maior na linha e coluna correspondente e na posição do vetor referente à div clicada
-                    //matrizMaior[row][col][0][k-1] = jogador;
                     //se verificar que houve ganhador...
                     console.log("passei" + letra);
                     if (verificar(L1, parseInt(n1), L2, parseInt(n2), jogador)){
                         verifyWinner(letra);
-                        //console.log(matrizMaior);
-                        //verificarSegunda();
+                        verificarSegunda(L1, n1);
                     }
                     switchPlayer();
                     //depois de processado o click remove o eventListener para click
@@ -123,7 +115,6 @@ const getDivsJogo = () => {
                     rodada++;
                 })
             }
-            //matrizMaior[i][j - 1].push(matriz);
         }
     }
 }
@@ -145,64 +136,57 @@ const switchPlayer = () => {
 
 function verificar(L1, n1, L2, n2) {
 
-    //char1 = L1 == "A" ? 1 : L1 == "B" ? 2 : 3;
+    char1 = L1 == "A" ? 1 : L1 == "B" ? 2 : 3;
     char2 = L2 == "a" ? 0 : L2 == "b" ? 3 : 6;
     pos2 = char2 + (n2-1);
-    pos1 = (L1 == "A" ? 0 : L1 == "B" ? 1 : 2)*3 + (n1-1);
-    console.log(jogador, pos1, pos2);
+    //pos1 = (L1 == "A" ? 0 : L1 == "B" ? 1 : 2)*3 + (n1-1);
+    pos1 = char1*3 + (n1 - 1);
     matrizMaior[pos1][pos2] = jogador;
-    console.log(matrizMaior)
     //vasculha a coluna
     switch(Math.floor(pos2/3)){
         case 0: 
-            console.log(matrizMaior[pos1][pos2] + " case 1");
-            console.log(matrizMaior[pos1][pos2],  matrizMaior[pos1][pos2+3], matrizMaior[pos1][pos2+6]);
             if(matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2+3] && matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2+6]){
                 //salva na outra matriz
+                matriz[char1][char2] = jogador;
                 return true;
             }
             break;
         case 1:
-            console.log(matrizMaior[pos1][pos2] + " case 2");
-            console.log(matrizMaior[pos1][pos2], matrizMaior[pos1][pos2+3], matrizMaior[pos1][pos2-3]);
             if(matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2+3] && matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2-3]){
                 //salva na outra matriz
+                matriz[char1][char2] = jogador;
                 return true;
             }
             break;
         case 2:
-            console.log(matrizMaior[pos1][pos2] + " case 3");
-            console.log(matrizMaior[pos1][pos2], matrizMaior[pos1][pos2-3], matrizMaior[pos1][pos2-6]);
             if(matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2-3] && matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2-6]){
                 //salva na outra matriz
+                matriz[char1][char2] = jogador;
                 return true;
             }
             break;
-        default:
-            console.log(jogador + "padrao");
-            break;
     }
-    console.log("linha");
+
     //vasculha a linha
     switch(pos2%3){
         case 0: 
             if(matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2+1] && matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2+2]){
-                console.log(matrizMaior[pos1][pos2] + " case2 1");
                 //salva na outra matriz
+                matriz[char1][char2] = jogador;
                 return true;
             }
             break;
         case 1:
             if(matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2-1] && matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2+1]){
-                console.log(matrizMaior[pos1][pos2]  + " case2 2");
                 //salva na outra matriz
+                matriz[char1][char2] = jogador;
                 return true;
             }
             break;
         case 2:
             if(matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2-1] && matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2-2]){
-                console.log(matrizMaior[pos1][pos2] + " case2 3");
                 //salva na outra matriz
+                matriz[char1][char2] = jogador;
                 return true;
             }
             break;
@@ -213,38 +197,28 @@ function verificar(L1, n1, L2, n2) {
         case 0:
         case 8:
             if(matrizMaior[pos1][0] === matrizMaior[pos1][4] && matrizMaior[pos1][4] === matrizMaior[pos1][8]){
+                //salva na outra matriz
+                matriz[char1][char2] = jogador;
                 return true;
             }
             break;
         case 2:
         case 6:
-            if(matrizMaior[pos1][2] === matrizMaior[pos1][4] && matrizMaior[pos1][4] === matrizMaior[pos1][6])
+            if(matrizMaior[pos1][2] === matrizMaior[pos1][4] && matrizMaior[pos1][4] === matrizMaior[pos1][6]){
+                //salva na outra matriz
+                matriz[char1][char2] = jogador;
                 return true;
+            }
             break;
         case 4:
             if(matrizMaior[pos1][4] === matrizMaior[pos1][2] && matrizMaior[pos1][4] === matrizMaior[pos1][6] 
-                || matrizMaior[pos1][4] === matrizMaior[pos1][0] && matrizMaior[pos1][4] === matrizMaior[pos1][8])
-                return true;
+                || matrizMaior[pos1][4] === matrizMaior[pos1][0] && matrizMaior[pos1][4] === matrizMaior[pos1][8]){
+                    //salva na outra matriz
+                    matriz[char1][char2] = jogador;
+                    return true;
+                }
             break;
     }
-    /*centro1 = Math.floor(pos1 / 3) * 3 + 1;
-    centro2 = Math.floor(pos2 / 3) * 3 + 1;
-    if (matrizMaior[centro1][centro2] == matrizMaior[pos1][pos2]){
-        if (matrizMaior[centro1][centro2] == matrizMaior[centro1--][centro2--] && matrizMaior[centro1][centro2] ==
-            matrizMaior[centro1++][centro2++]) {
-            //salva o valor na matriz Maior
-            console.log(matrizMaior[pos1][pos2] + " case3 1");
-            //confirma vencedor
-            return true;
-        }
-        else if (matrizMaior[centro1][centro2] == matrizMaior[centro1--][centro2++] && matrizMaior[centro1][centro2]
-            == matrizMaior[centro1++][centro2--]) {
-            //salva o valor na matriz Maior
-            console.log(matrizMaior[pos1][pos2] + " case3 2");
-            //confirma vencedor
-            return true;
-        }
-    }*/
 }
 
 /**
@@ -260,89 +234,57 @@ const verifyWinner = (value) => {
     $(`#img-${value}`).addClass("animate");
 }
 
-function verificarSegunda(pos1, pos2) {
-    var mod1 = pos1 % 3;
-    var mod2 = pos2 % 3;
+function verificarSegunda(L1, pos2) {
+    pos11 = L1 == "A" ? 1 : L1 == "B" ? 2 : 3;
 
-    //vasculha na linha
-    switch (pos1) {
-        case 0:
-            //se o valor for igual na do lado, verifica a próxima lateral
-            if (matriz2[pos1 + 1][pos2] == matriz2[pos1][pos2]) {
-                //se sim, completou a sequencia
-                if (matriz2[pos1 + 2][pos2] == matriz2[pos1][pos2]) {
-                    //exibe uma mensagem de vitória e encerra o jogo
-                    alert(ganhou);
-                }
+    //vasculha a coluna
+    switch(pos1){
+        case 0: 
+            if(matriz[pos1][pos2] == matriz[pos1][pos2+1] && matriz[pos1][pos2] == matriz[pos1][pos2+2]){
+                //exibe mensagem de vencedor
+                return true;
             }
             break;
         case 1:
-            //se o valor for igual na do lado, verifica a próxima lateral
-            if (matriz2[pos1 + mod1][pos2] == matriz2[pos1][pos2]) {
-                //se sim, completou a sequencia
-                if (matriz2[pos1 - mod1][pos2] == matriz2[pos1][pos2]) {
-                    //exibe uma mensagem de vitória e encerra o jogo
-                    alert(ganhou);
-                }
+            if(matriz[pos1][pos2] == matriz[pos1][pos2+1] && matriz[pos1][pos2] == matriz[pos1][pos2-1]){
+                //exibe mensagem de vencedor
+                return true;
             }
             break;
         case 2:
-            //se o valor for igual na do lado, verifica a próxima lateral
-            if (matriz2[pos1 - 1][pos2] == matriz2[pos1][pos2]) {
-                //se sim, completou a sequencia
-                if (matriz2[pos1 - mod1][pos2] == matriz2[pos1][pos2]) {
-                    //exibe uma mensagem de vitória e encerra o jogo
-                    alert(ganhou);
-                }
+            if(matriz[pos1][pos2] == matriz[pos1][pos2-1] && matriz[pos1][pos2] == matriz[pos1][pos2-2]){
+                //exibe mensagem de vencedor
+                return true;
             }
             break;
     }
-    //vasculha na coluna
-    switch (pos2) {
-        case 0:
-            //se o valor for igual na do lado, verifica a próxima lateral
-            if (matriz2[pos1][pos2 + 1] == matriz2[pos1][pos2]) {
-                //se sim, completou a sequencia
-                if (matriz2[pos1][pos2 + 2] == matriz2[pos1][pos2]) {
-                    //exibe uma mensagem de vitória e encerra o jogo
-                    alert(ganhou);
-                }
+
+    //vasculha a linha
+    switch(pos2){
+        case 0: 
+            if(matriz[pos1][pos2] == matriz[pos1][pos2+1] && matriz[pos1][pos2] == matriz[pos1][pos2+2]){
+                //exibe mensagem de vencedor
+                return true;
             }
             break;
         case 1:
-            //se o valor for igual na do lado, verifica a próxima lateral
-            if (matriz2[pos1][pos2 + mod2] == matriz2[pos1][pos2]) {
-                //se sim, completou a sequencia
-                if (matriz2[pos1][pos2 - mod2] == matriz2[pos1][pos2]) {
-                    //exibe uma mensagem de vitória e encerra o jogo
-                    alert(ganhou);
-                }
+            if(matriz[pos1][pos2] == matriz[pos1][pos2-1] && matriz[pos1][pos2] == matriz[pos1][pos2+1]){
+                //exibe mensagem de vencedor
+                return true;
             }
             break;
         case 2:
-            //se o valor for igual na do lado, verifica a próxima lateral
-            if (matriz2[pos1][pos2 - 1] == matriz2[pos1][pos2]) {
-                //se sim, completou a sequencia
-                if (matriz2[pos1][pos2 - mod2] == matriz2[pos1][pos2]) {
-                    //exibe uma mensagem de vitória e encerra o jogo
-                    alert(ganhou);
-                }
+            if(matriz[pos1][pos2] == matriz[pos1][pos2-1] && matriz[pos1][pos2] == matriz[pos1][pos2-2]){
+                //exibe mensagem de vencedor
+                return true;
             }
             break;
     }
-    //vasculha a diagonal, se a posição do centro já estiver preenchida
-    centro1 = Math.floor(pos1 / 3) * 3 + 1;
-    centro2 = Math.floor(pos2 / 3) * 3 + 1;
-    if (matriz2[centro1][centro2] == matriz2[pos1][pos2]) {
-        if (matriz2[centro1][centro2] == matriz2[centro1--][centro2--] && matriz2[centro1][centro2] ==
-            matriz2[centro1++][centro2++]) {
-            //exibe uma mensagem de vitória e encerra o jogo
-            alert(ganhou);
+
+    //vasculha a diagonal
+    if(matriz[pos1][4] === matriz[pos1][2] && matriz[pos1][4] === matriz[pos1][6] 
+        || matriz[pos1][4] === matriz[pos1][0] && matriz[pos1][4] === matriz[pos1][8]){
+            //exibe mensagem de vencedor
+            return true;
         }
-        else if (matriz2[centro1][centro2] == matriz2[centro1--][centro2++] && matriz2[centro1][centro2] ==
-            matriz2[centro1++][centro2--]) {
-            //exibe uma mensagem de vitória e encerra o jogo
-            alert(ganhou);
-        }
-    }
 }
