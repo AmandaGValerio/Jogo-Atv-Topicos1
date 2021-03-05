@@ -7,8 +7,8 @@ let player1 = 0;
 let player2 = 0;
 let jogos = [];
 let matrizMaior = [[-1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-                [-1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-                [-1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1]];
+[-1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+[-1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1]];
 let matriz = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]];
 
 /**
@@ -91,7 +91,7 @@ const getDivsJogo = () => {
                      */
                     let row = arrayLetra[0].replace(regUpper, "");
                     let col = arrayLetra[1].replace(regDown, "");
-                    
+
                     //Variáveis para utilizar na função verificar
                     const L1 = arrayLetra[0].replace(regNumb, "");
                     const n1 = row;
@@ -102,16 +102,16 @@ const getDivsJogo = () => {
                     //insere na matriz maior na linha e coluna correspondente e na posição do vetor referente à div clicada
                     //se verificar que houve ganhador...
                     console.log("passei" + letra);
-                    if (verificar(L1, parseInt(n1), L2, parseInt(n2), jogador)){
+                    if (verificar(L1, parseInt(n1), L2, parseInt(n2), jogador)) {
                         verifyWinner(letra);
                         verificarSegunda(L1, n1);
                     }
                     switchPlayer();
                     //depois de processado o click remove o eventListener para click
                     const element = document.getElementById(`${letra}`);
-                    element.removeEventListener('click', () => {});
+                    element.removeEventListener('click', () => { });
                     $(`#${letra}`).off('click');
-                    
+
                     rodada++;
                 })
             }
@@ -138,11 +138,82 @@ function verificar(L1, n1, L2, n2) {
 
     char1 = L1 == "A" ? 1 : L1 == "B" ? 2 : 3;
     char2 = L2 == "a" ? 0 : L2 == "b" ? 3 : 6;
-    pos2 = char2 + (n2-1);
+    pos2 = L2 == "a" ? 0 + n2 - 1 : L2 == "b" ? 3 + n2 - 1 : 6 + n2 - 1;
     //pos1 = (L1 == "A" ? 0 : L1 == "B" ? 1 : 2)*3 + (n1-1);
-    pos1 = char1*3 + (n1 - 1);
+    pos1 = L1 == "A" ? 0 + n1 - 1 : L1 == "B" ? 3 + n1 - 1 : 6 + n1 - 1;
     matrizMaior[pos1][pos2] = jogador;
     //vasculha a coluna
+    switch (pos2) {
+        case 0:
+        case 3:
+        case 6:
+            if (matrizMaior[pos1][0] === matrizMaior[pos1][3] && matrizMaior[pos1][0] === matrizMaior[pos1][6]) {
+                return true;
+            }
+            break
+        case 1:
+        case 4:
+        case 7:
+            if (matrizMaior[pos1][1] === matrizMaior[pos1][4] && matrizMaior[pos1][1] === matrizMaior[pos1][7]) {
+                return true;
+            }
+            break;
+        case 2:
+        case 5:
+        case 8:
+            if (matrizMaior[pos1][2] === matrizMaior[pos1][5] && matrizMaior[pos1][2] === matrizMaior[pos1][8]) {
+                return true;
+            }
+            break;
+        default:
+            break;
+    }
+    //verificar linha
+    switch(pos2){
+        case 0:
+        case 1:
+        case 2:
+            if (matrizMaior[pos1][0] === matrizMaior[pos1][1] && matrizMaior[pos1][0] === matrizMaior[pos1][2]){
+                return true;
+            }
+            break;
+        case 3:
+        case 4:
+        case 5:
+            if (matrizMaior[pos1][3] === matrizMaior[pos1][4] && matrizMaior[pos1][3] === matrizMaior[pos1][5]) {
+                return true;
+            }
+            break;
+        case 6:
+        case 7:
+        case 8:
+            if (matrizMaior[pos1][6] === matrizMaior[pos1][7] && matrizMaior[pos1][6] === matrizMaior[pos1][8]) {
+                return true;
+            }
+            break;
+    }
+    //verifica diagonal
+    switch(pos2){
+        case 2:
+        case 6:
+            if (matrizMaior[pos1][2] === matrizMaior[pos1][4] && matrizMaior[pos1][6] === matrizMaior[pos1][2]) {
+                return true;
+            }
+            break;
+        case 0:
+        case 8:
+            if (matrizMaior[pos1][0] === matrizMaior[pos1][4] && matrizMaior[pos1][0] === matrizMaior[pos1][8]) {
+                return true;
+            }
+            break;
+        case 4:
+            if (matrizMaior[pos1][4] === matrizMaior[pos1][2] && matrizMaior[pos1][4] === matrizMaior[pos1][6]
+                || matrizMaior[pos1][4] === matrizMaior[pos1][0] && matrizMaior[pos1][4] === matrizMaior[pos1][8]) {
+                return true;
+            }
+            break;
+    }
+    /*
     switch(Math.floor(pos2/3)){
         case 0: 
             if(matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2+3] && matrizMaior[pos1][pos2] == matrizMaior[pos1][pos2+6]){
@@ -218,7 +289,7 @@ function verificar(L1, n1, L2, n2) {
                     return true;
                 }
             break;
-    }
+    }*/
 }
 
 /**
@@ -235,24 +306,25 @@ const verifyWinner = (value) => {
 }
 
 function verificarSegunda(L1, pos2) {
-    pos11 = L1 == "A" ? 1 : L1 == "B" ? 2 : 3;
+    pos1 = L1 == "A" ? 0 : L1 == "B" ? 1 : 2;
 
     //vasculha a coluna
-    switch(pos1){
-        case 0: 
-            if(matriz[pos1][pos2] == matriz[pos1][pos2+1] && matriz[pos1][pos2] == matriz[pos1][pos2+2]){
+    switch (pos1) {
+        case 0:
+            if (matriz[pos1][pos2] == matriz[pos1][pos2 + 1] && matriz[pos1][pos2] == matriz[pos1][pos2 + 2]) {
                 //exibe mensagem de vencedor
+                console.log(matriz)
                 return true;
             }
             break;
         case 1:
-            if(matriz[pos1][pos2] == matriz[pos1][pos2+1] && matriz[pos1][pos2] == matriz[pos1][pos2-1]){
+            if (matriz[pos1][pos2] == matriz[pos1][pos2 + 1] && matriz[pos1][pos2] == matriz[pos1][pos2 - 1]) {
                 //exibe mensagem de vencedor
                 return true;
             }
             break;
         case 2:
-            if(matriz[pos1][pos2] == matriz[pos1][pos2-1] && matriz[pos1][pos2] == matriz[pos1][pos2-2]){
+            if (matriz[pos1][pos2] == matriz[pos1][pos2 - 1] && matriz[pos1][pos2] == matriz[pos1][pos2 - 2]) {
                 //exibe mensagem de vencedor
                 return true;
             }
@@ -260,21 +332,21 @@ function verificarSegunda(L1, pos2) {
     }
 
     //vasculha a linha
-    switch(pos2){
-        case 0: 
-            if(matriz[pos1][pos2] == matriz[pos1][pos2+1] && matriz[pos1][pos2] == matriz[pos1][pos2+2]){
+    switch (pos2) {
+        case 0:
+            if (matriz[pos1][pos2] == matriz[pos1][pos2 + 1] && matriz[pos1][pos2] == matriz[pos1][pos2 + 2]) {
                 //exibe mensagem de vencedor
                 return true;
             }
             break;
         case 1:
-            if(matriz[pos1][pos2] == matriz[pos1][pos2-1] && matriz[pos1][pos2] == matriz[pos1][pos2+1]){
+            if (matriz[pos1][pos2] == matriz[pos1][pos2 - 1] && matriz[pos1][pos2] == matriz[pos1][pos2 + 1]) {
                 //exibe mensagem de vencedor
                 return true;
             }
             break;
         case 2:
-            if(matriz[pos1][pos2] == matriz[pos1][pos2-1] && matriz[pos1][pos2] == matriz[pos1][pos2-2]){
+            if (matriz[pos1][pos2] == matriz[pos1][pos2 - 1] && matriz[pos1][pos2] == matriz[pos1][pos2 - 2]) {
                 //exibe mensagem de vencedor
                 return true;
             }
@@ -282,9 +354,10 @@ function verificarSegunda(L1, pos2) {
     }
 
     //vasculha a diagonal
-    if(matriz[pos1][4] === matriz[pos1][2] && matriz[pos1][4] === matriz[pos1][6] 
-        || matriz[pos1][4] === matriz[pos1][0] && matriz[pos1][4] === matriz[pos1][8]){
-            //exibe mensagem de vencedor
-            return true;
-        }
+    if (matriz[0][0] === matriz[1][2] && matriz[1][2] === matriz[2][2]
+        || matriz[0][2] === matriz[1][2] && matriz[1][2] === matriz[2][0]) {
+        //exibe mensagem de vencedor
+        console.log(matriz)
+        return true;
+    }
 }
