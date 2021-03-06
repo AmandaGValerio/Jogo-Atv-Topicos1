@@ -30,9 +30,11 @@ Nesse exemplo, o código dentro da função anônima só será executado quendo 
 
 ## Contribuidores
 
-[<img src="https://avatars.githubusercontent.com/u/56452064" width="55" height="55" >](https://github.com/AmandaGValerio) &nbsp; [<img src="https://avatars.githubusercontent.com/u/56452064" width="55" height="55" >](https://github.com/AmandaGValerio) &nbsp; [<img src="https://avatars.githubusercontent.com/u/42541492?s=460&u=80c91073f18286672ff8bd9ba8afb01ce5011ec4&v=4" width="55" height="55" >](https://github.com/ERAjeje)
-[Amanda Valério](https://github.com/AmandaGValerio) &nbsp; &nbsp; [Laura Ratis]() &nbsp; &nbsp; [Edson Ajeje]()
-*Funcionalidades JS* &nbsp; *Design e Layout* &nbsp; *Funcionalidades JS*
+| |
+|-------------|
+| [<img src="https://avatars.githubusercontent.com/u/56452064" width="55" height="55" >](https://github.com/AmandaGValerio) &nbsp; [Amanda Valério](https://github.com/AmandaGValerio) &nbsp; *Funcionalidades JS* |
+| [<img src="https://avatars.githubusercontent.com/u/58443789?s=400&v=4" width="55" height="55" >](https://github.com/laura-ratis) &nbsp; [Laura Ratis](https://github.com/laura-ratis) &nbsp; *Design e Layout* |
+| [<img src="https://avatars.githubusercontent.com/u/42541492?s=460&u=80c91073f18286672ff8bd9ba8afb01ce5011ec4&v=4" width="55" height="55" >](https://github.com/ERAjeje) &nbsp; [Edson Ajeje](https://github.com/ERAjeje) &nbsp; *Funcionalidades JS* |
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
