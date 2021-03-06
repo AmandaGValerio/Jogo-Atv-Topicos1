@@ -30,7 +30,7 @@ Nesse exemplo, o código dentro da função anônima só será executado quendo 
 
 ## Contribuidores
 
-<img src="https://avatars.githubusercontent.com/u/56452064" width="55" height="55" >[](https://github.com/AmandaGValerio)
+[<img src="https://avatars.githubusercontent.com/u/56452064" width="55" height="55" >](https://github.com/AmandaGValerio)
 
 [Amanda Valério](https://github.com/AmandaGValerio) 
 
