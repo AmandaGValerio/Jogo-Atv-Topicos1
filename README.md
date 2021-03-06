@@ -30,13 +30,13 @@ Nesse exemplo, o código dentro da função anônima só será executado quendo 
 
 ## Contribuidores
 
-<img src="https://avatars.githubusercontent.com/u/56452064" width="55" height="55" />
+<img src="https://avatars.githubusercontent.com/u/56452064" width="55" height="55" >
 
-![Amanda Valério](https://github.com/AmandaGValerio) 
+[Amanda Valério](https://github.com/AmandaGValerio) 
 
-<img src="https://avatars.githubusercontent.com/u/42541492?s=460&u=80c91073f18286672ff8bd9ba8afb01ce5011ec4&v=4" width="55" height="55" />
+<img src="https://avatars.githubusercontent.com/u/42541492?s=460&u=80c91073f18286672ff8bd9ba8afb01ce5011ec4&v=4" width="55" height="55" >
 
-![Edson Ajeje](https://github.com/ERAjeje)
+[Edson Ajeje](https://github.com/ERAjeje)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
