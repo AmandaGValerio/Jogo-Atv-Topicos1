@@ -31,9 +31,9 @@ Nesse exemplo, o código dentro da função anônima só será executado quendo 
 ## Contribuidores
 
 <img src="https://avatars.githubusercontent.com/u/56452064" width="55" height="55" />  
-[Amanda Valério](https://github.com/AmandaGValerio) 
+![Amanda Valério](https://github.com/AmandaGValerio) 
 Foto Edson 
-[Edson Ajeje](https://github.com/ERAjeje)|
+![Edson Ajeje](https://github.com/ERAjeje)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
