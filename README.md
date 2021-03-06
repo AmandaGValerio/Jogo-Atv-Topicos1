@@ -8,6 +8,12 @@
 Trabalho em grupo desenvolvido como requisito para obtenção de nota parcial para a disciplina de Tópicos 1. Este trabalho tem como requisito que seja desenvolvido com HTML, CSS e Javascript puros ou utilizando o framework Bootstrap 4.
 É necessário que sejam utilizadas as funções JQuery **click** e **delay**.
 
+## Imagens do Jogo
+
+![Captura de tela do jogo](./assets/utils/2021-03-06-18-09-03.png)
+
+![Gif vitória do Jogador 1](./assets/utils/2021-03-06-18-07-45.gif)
+
 ## Utilização das Funções do JQuery
 
 ### Click
