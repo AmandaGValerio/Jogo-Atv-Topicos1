@@ -12,7 +12,9 @@ Trabalho em grupo desenvolvido como requisito para obtenção de nota parcial pa
 
 ![Captura de tela do jogo](./assets/utils/2021-03-06-18-09-03.png)
 
-![Gif vitória do Jogador 1](./assets/utils/2021-03-06-18-07-45.gif)
+![Gif vitória do Jogador 1](./assets/utils/2021-03-06-18-07-45 (1).gif)
+
+![Gif vitória do Jogador 1](./assets/utils/2021-03-06-18-07-45 (2).gif)
 
 ## Utilização das Funções do JQuery
 
