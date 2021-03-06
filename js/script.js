@@ -349,12 +349,16 @@ function verificarSegunda(L1, pos2) {
             }
             break;
     }
+    //verifica a diagonal
+    verificaDiagonal();
 }
 
 function verificaDiagonal() {
     //vasculha a diagonal
-    if (matriz[0][0] === matriz[1][1] && matriz[0][0] === matriz[2][2]
-        || matriz[1][1] === matriz[0][2] && matriz[1][1] === matriz[2][0]) {
+    if (matriz[0][0] === matriz[1][1] && matriz[0][0] === matriz[2][2] 
+        && (matriz[0][0] !== -1 && matriz[1][1] !== -1 && matriz[2][2] !== -1)
+        || matriz[1][1] === matriz[0][2] && matriz[1][1] === matriz[2][0]
+        && (matriz[1][1] !== -1 && matriz[0][2] !== -1 && matriz[2][0] !== -1)) {
         console.log(0)
         console.log(matriz)
         //exibe mensagem de vencedor
